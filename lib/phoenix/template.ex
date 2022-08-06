@@ -231,8 +231,13 @@ defmodule Phoenix.Template do
 
       @doc false
       def __mix_recompile__? do
-        unquote(hash(root, pattern, engines)) !=
-          Template.hash(@phoenix_root, @phoenix_pattern, @phoenix_template_engines)
+        result =
+          unquote(hash(root, pattern, engines)) !=
+            Template.hash(@phoenix_root, @phoenix_pattern, @phoenix_template_engines)
+
+        IO.inspect(result, label: "phoenix view __mix_recompile__?: ")
+
+        result
       end
     end
   end
